@@ -1,11 +1,17 @@
 ---
-title: "taha6767.github.io"
+title: "Mustafa Taha Disbudak"
+image: Tahagithubpicture.jpeg
+toc: false
+about: 
+  template: jolla
+  image-shape: round
+  image-width: 17em
+  links:
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/mustafa-taha-di%C5%9Fbudak-71bbb81b2/
+    - text: GitHub
+      href: https://github.com/taha6767
+    - text: Here is the repository for the code for this website and my handsome picture
+      href: https://github.com/taha6767/taha6767.github.io
 ---
-
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1
-```
+        
