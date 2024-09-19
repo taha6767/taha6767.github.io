@@ -1,5 +1,6 @@
 ---
 title: "Mustafa Taha Disbudak"
+subtitle: "Pomona College Fresman | Hopefully a Computer Science Major"
 image: Tahagithubpicture.jpeg
 toc: false
 about: 

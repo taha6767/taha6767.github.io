@@ -9,6 +9,12 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - text: "Data Viz"
+        menu:
+          - text: "TidyTuesday Analysis 1"
+            href: tidytuesday1.qmd
+          - text: "TidyTuesday Analysis 2"
+            href: tidytuesday2.qmd
 
 format:
   html:
@@ -17,4 +23,3 @@ format:
     toc: true
 
 editor: visual
-
