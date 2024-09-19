@@ -1,9 +1,8 @@
 ---
 title: "About"
+subtitle: "I want to master in Automation and AI and work towards my goal of freeing humanity from the burden of work"
 ---
 
-About this site
-
 ```{r}
-1 + 1
+
 ```

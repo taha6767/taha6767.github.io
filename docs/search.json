@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
     "objectID": "tidytuesday2.html",
     "href": "tidytuesday2.html",
     "title": "taha6767.github.io",
@@ -16,8 +9,8 @@
   {
     "objectID": "tidytuesday1.html",
     "href": "tidytuesday1.html",
-    "title": "taha6767.github.io",
+    "title": "CEO departure analysis",
     "section": "",
-    "text": "Hi this is a test for 1"
+    "text": "The data comes from Gentry et al. by way of DataIsPlural. It contains the reasons for CEO departure in S&P 1500 firms from 2000 through 2018.\nhttps://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-27/readme.md\n\n\n\n\n\n\n\n\n\n\nRetirement is by far the most common reason for CEO departures, accounting for the highest number of cases.\n“Other” reasons form the second largest category, suggesting that many CEO departures are due to complex or unspecified factors.\nBad performance is the third most frequent reason, indicating that a significant number of CEOs leave their positions due to poor company results.\nLegal issues and new opportunities are the least common reasons for CEO departures, with relatively few cases in each category.\nThe data suggests that natural career progression (retirement) and unspecified factors play a larger role in CEO turnover than forced departures due to performance issues or legal troubles."
   }
 ]
