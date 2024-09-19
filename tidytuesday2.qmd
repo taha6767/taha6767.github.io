@@ -1,1 +1,43 @@
-Hi this is a test for 2
+---
+title: "Draught Analysis of California"
+execute:
+  echo: false
+---
+
+The data is from the [U.S. Drought Monitor](https://droughtmonitor.unl.edu/DmData/DataDownload/ComprehensiveStatistics.aspx). The tidytuesday github link is:
+
+<https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-07-20/readme.md>
+
+```{r message=FALSE, warning=FALSE}
+library(tidytuesdayR) 
+library(tidyverse) 
+library(visdat)
+library(lubridate)
+
+tt  <- tidytuesdayR::tt_load('2021-07-20')
+d <- tt$drought
+
+d %>% 
+   filter(state_abb == "CA") %>% 
+   ggplot(aes(x = valid_start, y = area_pct, fill = fct_relevel(drought_lvl, "None"))) + 
+   geom_area() + 
+   labs(
+      fill = "Level of Draught",
+      x = "",
+      y = "State area %",
+      title = "California draught levels over time.",
+      subtitle = "2001 until mid 2021"
+   ) + 
+ scale_fill_brewer(palette = "PuRd", type = "seq", direction = -1) +
+theme(legend.position = "bottom")
+```
+
+-   California experiences frequent fluctuations in drought conditions, with periods of severe drought interspersed with times of little to no drought.
+
+-   The most severe and prolonged drought period occurred around 2014-2016, with a large portion of the state experiencing D3 and D4 (extreme to exceptional) drought levels.
+
+-   There are notable cycles of drought intensification and relief, with conditions often improving rapidly before worsening again.
+
+-   The early 2000s and the period around 2010 saw relatively milder drought conditions compared to the mid-2010s.
+
+-   Towards the end of the timeline (2020-2021), there's an indication of drought conditions worsening again, suggesting a potentially developing drought situation.
