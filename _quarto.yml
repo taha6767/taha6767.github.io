@@ -18,7 +18,7 @@ website:
           - text: "Project 2"
             href: Project2Taha copy.qmd
           - text: "Project 3"
-            href: Project3Taha.qmd
+            href: TahaProject3Final.qmd
 
 format:
   html:
