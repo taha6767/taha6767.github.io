@@ -15,4 +15,3 @@ about:
     - text: Here is the repository for the code for this website and my handsome picture
       href: https://github.com/taha6767/taha6767.github.io
 ---
-        
