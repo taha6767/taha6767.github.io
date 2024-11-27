@@ -1,0 +1,127 @@
+---
+title: "Project 4"
+author: Taha Disbudak
+date: November 26, 2024
+format: html
+execute:
+  warning: false
+  message: false
+---
+
+```{r, warning = FALSE}
+library(mdsr)
+library(dbplyr)
+library(DBI)
+library(RMariaDB)
+library(tidyverse)
+```
+
+Source of Data: Wideband Acoustic Immittance (WAI) Database hosted by Smith College (doi.org/10.35482/egr.001.2022)
+
+### Plan
+
+In this project, I analyze and visualize data from the WAI Database.
+
+1.  For **Part 1**, I replicate **Figure 1 from Voss (2020)** by querying the database to compute mean absorbance values across frequencies for 12 studies. The data is grouped and processed in SQL, and only visualization is performed in R using `ggplot`.
+
+2.  For **Part 2**, I investigate the absorbance behavior across different **age groups** (Child, Adult) within the Aithal_2019a study. I compute mean absorbance values by frequency and age group using SQL and plot these trends in R.
+
+Recreating figure 1:
+
+```{r}
+
+con_wai <- dbConnect(
+  MariaDB(), host = "scidb.smith.edu",
+  user = "waiuser", password = "smith_waiDB", 
+  dbname = "wai"
+)
+Measurements <- tbl(con_wai, "Measurements")
+PI_Info <- tbl(con_wai, "PI_Info")
+Subjects <- tbl(con_wai, "Subjects")
+
+# collect(Measurements)
+
+
+```
+
+```{sql}
+#| connection: con_wai
+#| output.var: "graph"
+
+SELECT 
+    m.Identifier, 
+    m.Frequency, 
+    AVG(m.Absorbance) AS mean_absorbance,
+    p.Year,
+    p.AuthorsShortList,
+    m.Instrument,
+    CONCAT(p.AuthorsShortList, ' (', p.Year, ') N=', 
+           COUNT(DISTINCT CONCAT(m.SubjectNumber, m.Ear)), '; ', m.Instrument) AS legend
+FROM Measurements m
+INNER JOIN PI_Info p ON m.Identifier = p.Identifier
+WHERE m.Identifier IN (
+    'Abur_2014', 'Feeney_2017', 'Groon_2015', 'Lewis_2015', 'Liu_2008',
+    'Rosowski_2012', 'Shahnaz_2006', 'Shaver_2013', 'Sun_2016', 
+    'Voss_1994', 'Voss_2010', 'Werner_2010'
+) 
+AND m.Frequency BETWEEN 200 AND 8000
+GROUP BY m.Identifier, m.Frequency, m.Instrument, p.Year, p.AuthorsShortList
+
+
+```
+
+```{r}
+graph |>
+ggplot(aes (x = Frequency, y = mean_absorbance, 
+  color = Identifier,
+  group = Identifier)) +
+  geom_line()+
+  scale_x_log10()
+  labs(
+    title = "Mean Absorbance Across Frequencies for Various Studies",
+    x = "Frequency (Log Scale)",
+    y = "Mean Absorbance"
+  )
+
+```
+
+This visualization shows data from 12 different studies examining mean absorbance patterns across sound frequencies. Each study is represented by a uniquely colored line, with frequencies shown on a logarithmic scale from about 300 to 8000 Hz. Most studies follow a similar pattern: starting with low absorbance values (around 0.1-0.2) at lower frequencies, gradually increasing to reach maximum absorbance (between 0.6-0.8) in the mid-frequency range of 1000-3000 Hz, and then declining at higher frequencies. Notable variations exist between studies, particularly in the Feeney_2017 data which shows a distinctly different pattern with lower absorbance values and a delayed peak compared to other studies. The Lewis_2015 study shows the earliest rise in absorbance at low frequencies, while Werner_2010 achieves the highest peak absorbance values around 0.8.
+
+Part 2:
+
+```{sql}
+#| connection: con_wai
+#| output.var: "graphforQ2_comparison"
+SELECT 
+    m.AgeCategory,
+    m.Frequency, 
+    AVG(m.Absorbance) AS mean_absorbance,
+    m.Identifier
+FROM Measurements m
+INNER JOIN Subjects s ON m.Identifier = s.Identifier 
+    AND m.SubjectNumber = s.SubjectNumber
+INNER JOIN PI_Info p ON m.Identifier = p.Identifier
+WHERE m.Identifier = 'Aithal_2019a' 
+    AND m.Frequency BETWEEN 200 AND 8000
+    AND m.AgeCategory IS NOT NULL
+GROUP BY m.Identifier, m.Frequency, m.AgeCategory;
+```
+
+```{r}
+graphforQ2_comparison |>
+ggplot(aes(x = Frequency, y = mean_absorbance, 
+   color = AgeCategory,
+   group = AgeCategory)) +
+  geom_line() +
+  scale_x_log10() +
+  labs(
+    title = "Mean Absorbance Across Frequencies by Age Category",
+    subtitle = "Comparison between Children and Adults in Aithal 2019 Study",
+    x = "Frequency (Log Scale)",
+    y = "Mean Absorbance",
+    color = "Age Category"
+  ) +
+  theme_minimal()
+```
+
+This comparison of absorbance patterns between children and adults in the Aithal 2019 study reveals distinct age-related differences in auditory response. While adults show higher initial absorbance at lower frequencies (around 300 Hz), children demonstrate notably higher peak absorbance (reaching 0.7 compared to adults' 0.55) in the mid-frequency range of 1000-3000 Hz. This pattern reverses at higher frequencies above 3500 Hz, where adults maintain slightly higher absorbance levels. These variations in absorbance patterns likely reflect the anatomical and developmental differences between children's and adults' auditory systems.
