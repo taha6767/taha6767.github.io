@@ -1,0 +1,54 @@
+``` yaml
+---
+title: "Analyzing Netflix Data"
+author: "Taha Disbudak"
+format: 
+  revealjs:
+    theme: default
+    slide-number: true
+    touch: true
+    center: true
+---
+
+## Introduction
+
+This dataset consists of tv shows and movies available on Netflix as of 2019. The dataset is collected from Flixable which is a third-party Netflix search engine.
+
+## What does the data set include?
+
+![](NetflixDataSetExample.png)
+
+## Comparing genre popularity
+
+![](NetflixGenreCode.png)
+
+Since there were a lot of different genres I had to limit the genres down to the most popular ones and I used the following code to count the number of them
+
+## Bar Chart
+
+![](GenreGraph.png)
+
+- Drama: 36% of titles, dominating Netflix's library and offering versatile storytelling options
+- Crime/Thriller and Action & Adventure: Each at 12%, appealing to fans of suspense and excitement
+- Romantic Comedies: 11.1% of content, catering to viewers seeking feel-good entertainment
+- Horror: Only 5% of the library, presenting limited options for genre enthusiasts
+
+## Analyzing Turkish Content
+
+![](TurkishContentCode.png)
+
+## Turkish Content Analysis
+
+![](TurkishContentGraph.png)
+
+- Turkish Content Type: Movies dominate over TV shows in Netflix's Turkish content, probably because movies are easier to produce then whole shows
+- 2018 Decline: A notable decrease in Turkish content occurred during this year
+- Regulation Impact: New streaming service laws in 2018 required licenses and local broadcasting compliance, potentially limiting content availability
+- Strategic Changes: Netflix may have shifted focus to other regions or content types based on global viewing trends
+
+## References
+
+Original Source: Netflix Data from Kaggle, compiled by Shivam Bansal  
+Dataset published as part of TidyTuesday project  
+Location: https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-04-20
+```

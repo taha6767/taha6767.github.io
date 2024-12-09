@@ -110,5 +110,12 @@
     "title": "Assume netflix data frame is already loaded or load it here:",
     "section": "References",
     "text": "References\n\nData Source: TidyTuesday (2021-04-20)\nAdditional context drawn from industry news and streaming service updates."
+  },
+  {
+    "objectID": "Presentation.html",
+    "href": "Presentation.html",
+    "title": "taha6767.github.io",
+    "section": "",
+    "text": "---\ntitle: \"Analyzing Netflix Data\"\nauthor: \"Taha Disbudak\"\nformat: \n  revealjs:\n    theme: default\n    slide-number: true\n    touch: true\n    center: true\n---\n\n## Introduction\n\nThis dataset consists of tv shows and movies available on Netflix as of 2019. The dataset is collected from Flixable which is a third-party Netflix search engine.\n\n## What does the data set include?\n\n![](NetflixDataSetExample.png)\n\n## Comparing genre popularity\n\n![](NetflixGenreCode.png)\n\nSince there were a lot of different genres I had to limit the genres down to the most popular ones and I used the following code to count the number of them\n\n## Bar Chart\n\n![](GenreGraph.png)\n\n- Drama: 36% of titles, dominating Netflix's library and offering versatile storytelling options\n- Crime/Thriller and Action & Adventure: Each at 12%, appealing to fans of suspense and excitement\n- Romantic Comedies: 11.1% of content, catering to viewers seeking feel-good entertainment\n- Horror: Only 5% of the library, presenting limited options for genre enthusiasts\n\n## Analyzing Turkish Content\n\n![](TurkishContentCode.png)\n\n## Turkish Content Analysis\n\n![](TurkishContentGraph.png)\n\n- Turkish Content Type: Movies dominate over TV shows in Netflix's Turkish content, probably because movies are easier to produce then whole shows\n- 2018 Decline: A notable decrease in Turkish content occurred during this year\n- Regulation Impact: New streaming service laws in 2018 required licenses and local broadcasting compliance, potentially limiting content availability\n- Strategic Changes: Netflix may have shifted focus to other regions or content types based on global viewing trends\n\n## References\n\nOriginal Source: Netflix Data from Kaggle, compiled by Shivam Bansal  \nDataset published as part of TidyTuesday project  \nLocation: https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-04-20"
   }
 ]

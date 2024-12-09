@@ -21,6 +21,8 @@ website:
             href: TahaProject3Final.qmd
           - text: "Project 4"
             href: Project4.qmd
+          - text: "Presentation"
+            href: barebones.html
 
 format:
   html:
