@@ -47,5 +47,68 @@
     "title": "Project 4",
     "section": "",
     "text": "library(mdsr)\nlibrary(dbplyr)\nlibrary(DBI)\nlibrary(RMariaDB)\nlibrary(tidyverse)\n\nSource of Data: Wideband Acoustic Immittance (WAI) Database hosted by Smith College (doi.org/10.35482/egr.001.2022)\n\nPlan\nIn this project, I analyze and visualize data from the WAI Database.\n\nFor Part 1, I replicate Figure 1 from Voss (2020) by querying the database to compute mean absorbance values across frequencies for 12 studies. The data is grouped and processed in SQL, and only visualization is performed in R using ggplot.\nFor Part 2, I investigate the absorbance behavior across different age groups (Child, Adult) within the Aithal_2019a study. I compute mean absorbance values by frequency and age group using SQL and plot these trends in R.\n\nRecreating figure 1:\n\ncon_wai &lt;- dbConnect(\n  MariaDB(), host = \"scidb.smith.edu\",\n  user = \"waiuser\", password = \"smith_waiDB\", \n  dbname = \"wai\"\n)\nMeasurements &lt;- tbl(con_wai, \"Measurements\")\nPI_Info &lt;- tbl(con_wai, \"PI_Info\")\nSubjects &lt;- tbl(con_wai, \"Subjects\")\n\n# collect(Measurements)\n\n\nSELECT \n    m.Identifier, \n    m.Frequency, \n    AVG(m.Absorbance) AS mean_absorbance,\n    p.Year,\n    p.AuthorsShortList,\n    m.Instrument,\n    CONCAT(p.AuthorsShortList, ' (', p.Year, ') N=', \n           COUNT(DISTINCT CONCAT(m.SubjectNumber, m.Ear)), '; ', m.Instrument) AS legend\nFROM Measurements m\nINNER JOIN PI_Info p ON m.Identifier = p.Identifier\nWHERE m.Identifier IN (\n    'Abur_2014', 'Feeney_2017', 'Groon_2015', 'Lewis_2015', 'Liu_2008',\n    'Rosowski_2012', 'Shahnaz_2006', 'Shaver_2013', 'Sun_2016', \n    'Voss_1994', 'Voss_2010', 'Werner_2010'\n) \nAND m.Frequency BETWEEN 200 AND 8000\nGROUP BY m.Identifier, m.Frequency, m.Instrument, p.Year, p.AuthorsShortList\n\n\ngraph |&gt;\nggplot(aes (x = Frequency, y = mean_absorbance, \n  color = Identifier,\n  group = Identifier)) +\n  geom_line()+\n  scale_x_log10()\n\n\n\n\n\n\n\n  labs(\n    title = \"Mean Absorbance Across Frequencies for Various Studies\",\n    x = \"Frequency (Log Scale)\",\n    y = \"Mean Absorbance\"\n  )\n\n$x\n[1] \"Frequency (Log Scale)\"\n\n$y\n[1] \"Mean Absorbance\"\n\n$title\n[1] \"Mean Absorbance Across Frequencies for Various Studies\"\n\nattr(,\"class\")\n[1] \"labels\"\n\n\nThis visualization shows data from 12 different studies examining mean absorbance patterns across sound frequencies. Each study is represented by a uniquely colored line, with frequencies shown on a logarithmic scale from about 300 to 8000 Hz. Most studies follow a similar pattern: starting with low absorbance values (around 0.1-0.2) at lower frequencies, gradually increasing to reach maximum absorbance (between 0.6-0.8) in the mid-frequency range of 1000-3000 Hz, and then declining at higher frequencies. Notable variations exist between studies, particularly in the Feeney_2017 data which shows a distinctly different pattern with lower absorbance values and a delayed peak compared to other studies. The Lewis_2015 study shows the earliest rise in absorbance at low frequencies, while Werner_2010 achieves the highest peak absorbance values around 0.8.\nPart 2:\n\nSELECT \n    m.AgeCategory,\n    m.Frequency, \n    AVG(m.Absorbance) AS mean_absorbance,\n    m.Identifier\nFROM Measurements m\nINNER JOIN Subjects s ON m.Identifier = s.Identifier \n    AND m.SubjectNumber = s.SubjectNumber\nINNER JOIN PI_Info p ON m.Identifier = p.Identifier\nWHERE m.Identifier = 'Aithal_2019a' \n    AND m.Frequency BETWEEN 200 AND 8000\n    AND m.AgeCategory IS NOT NULL\nGROUP BY m.Identifier, m.Frequency, m.AgeCategory;\n\n\ngraphforQ2_comparison |&gt;\nggplot(aes(x = Frequency, y = mean_absorbance, \n   color = AgeCategory,\n   group = AgeCategory)) +\n  geom_line() +\n  scale_x_log10() +\n  labs(\n    title = \"Mean Absorbance Across Frequencies by Age Category\",\n    subtitle = \"Comparison between Children and Adults in Aithal 2019 Study\",\n    x = \"Frequency (Log Scale)\",\n    y = \"Mean Absorbance\",\n    color = \"Age Category\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nThis comparison of absorbance patterns between children and adults in the Aithal 2019 study reveals distinct age-related differences in auditory response. While adults show higher initial absorbance at lower frequencies (around 300 Hz), children demonstrate notably higher peak absorbance (reaching 0.7 compared to adults’ 0.55) in the mid-frequency range of 1000-3000 Hz. This pattern reverses at higher frequencies above 3500 Hz, where adults maintain slightly higher absorbance levels. These variations in absorbance patterns likely reflect the anatomical and developmental differences between children’s and adults’ auditory systems."
+  },
+  {
+    "objectID": "PresentationTaha.html",
+    "href": "PresentationTaha.html",
+    "title": "Assume netflix data frame is already loaded or load it here:",
+    "section": "",
+    "text": "title: \"Analyzing Netflix Content\"\nauthor: \"Mustafa Taha Disbudak\"\nsubtitle: \"December 6, 2019\"\nformat:\n  revealjs:\n    scrollable: true\n    slide-number: true\n    show-slide-number: all\n    embed-resources: true\nexecute:\n  echo: false\n  warning: false\n  message: false\n---\nCopy code\n`` library(tidyverse) library(stringr) library(lubridate)"
+  },
+  {
+    "objectID": "PresentationTaha.html#introduction",
+    "href": "PresentationTaha.html#introduction",
+    "title": "Assume netflix data frame is already loaded or load it here:",
+    "section": "Introduction",
+    "text": "Introduction\n\nProject Goal: Analyze Netflix’s catalog to understand genre distributions, top actors, and content trends related to my home country, Turkey.\nData Source: TidyTuesday (April 2021 Netflix dataset)."
+  },
+  {
+    "objectID": "PresentationTaha.html#genre-distribution",
+    "href": "PresentationTaha.html#genre-distribution",
+    "title": "Assume netflix data frame is already loaded or load it here:",
+    "section": "Genre Distribution",
+    "text": "Genre Distribution\n{r,\nCopy code\ngenre_plot\n\nObservation: Drama dominates with over 36% of titles.\nDramas often overlap with multiple themes, which could explain their prevalence.\nCrime/Thriller and Action & Adventure each hold around 12%, followed closely by Romantic Comedies at ~11%."
+  },
+  {
+    "objectID": "PresentationTaha.html#other-genre-highlights",
+    "href": "PresentationTaha.html#other-genre-highlights",
+    "title": "Assume netflix data frame is already loaded or load it here:",
+    "section": "Other Genre Highlights",
+    "text": "Other Genre Highlights\n\nComedy and Horror each represent roughly 5%.\nScience Fiction & Fantasy titles are fewer (~4%).\nThis distribution suggests Netflix’s focus on emotionally engaging and narrative-rich content (e.g., Drama) and consistently popular genres like Crime/Thriller."
+  },
+  {
+    "objectID": "PresentationTaha.html#top-actors",
+    "href": "PresentationTaha.html#top-actors",
+    "title": "Assume netflix data frame is already loaded or load it here:",
+    "section": "Top Actors",
+    "text": "Top Actors\n{r,\nCopy code\nactor_plot\n\nData on cast was missing for many titles (over 700).\nTop Actor: Anupam Kher with 42 appearances.\nFrequent appearances by certain actors may reflect Netflix’s licensing deals or popularity of certain film industries (e.g., Bollywood)."
+  },
+  {
+    "objectID": "PresentationTaha.html#turkish-content-distribution",
+    "href": "PresentationTaha.html#turkish-content-distribution",
+    "title": "Assume netflix data frame is already loaded or load it here:",
+    "section": "Turkish Content Distribution",
+    "text": "Turkish Content Distribution\n{r,\nCopy code\nturkish_type_plot\n\nTurkish content consists mainly of movies.\nTV shows are much rarer, likely due to higher production costs and complexities."
+  },
+  {
+    "objectID": "PresentationTaha.html#turkish-content-over-time",
+    "href": "PresentationTaha.html#turkish-content-over-time",
+    "title": "Assume netflix data frame is already loaded or load it here:",
+    "section": "Turkish Content Over Time",
+    "text": "Turkish Content Over Time\n{r,\nCopy code\nturkish_trend_plot\n\nA notable drop in Turkish titles around 2018.\nPossible factors:\n\nRegulatory changes and censorship in Turkey.\nNetflix content strategy shifts.\nPolitical and economic challenges affecting production."
+  },
+  {
+    "objectID": "PresentationTaha.html#conclusion",
+    "href": "PresentationTaha.html#conclusion",
+    "title": "Assume netflix data frame is already loaded or load it here:",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nKey Insight: Drama is the backbone of Netflix’s content library.\nActor Spotlight: Certain actors appear prominently due to regional film industries and licensing deals.\nTurkish Content: Primarily movies, with a dip in production around 2018 due to regulatory and strategic reasons, but recent years have seen renewed interest.\nThis analysis highlights how global streaming services balance multiple genres, star power, and regional content strategies to cater to diverse audiences."
+  },
+  {
+    "objectID": "PresentationTaha.html#references",
+    "href": "PresentationTaha.html#references",
+    "title": "Assume netflix data frame is already loaded or load it here:",
+    "section": "References",
+    "text": "References\n\nData Source: TidyTuesday (2021-04-20)\nAdditional context drawn from industry news and streaming service updates."
   }
 ]

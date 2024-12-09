@@ -1,0 +1,221 @@
+```{---}
+title: "Analyzing Netflix Content"
+author: "Mustafa Taha Disbudak"
+subtitle: "December 6, 2019"
+format:
+  revealjs:
+    scrollable: true
+    slide-number: true
+    show-slide-number: all
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```
+
+```         
+```
+
+```         
+{r
+```
+
+Copy code
+
+`` library(tidyverse)
+library(stringr)
+library(lubridate)
+
+# Assume `netflix` data frame is already loaded or load it here:
+# netflix <- readr::read_csv("path_to_your_data.csv")
+
+genres_of_interest <- c("crime", "thriller", "comedy", "drama", 
+                        "action", "adventure", "romantic", "romance",
+                        "science fiction", "sci-fi", "fantasy",
+                        "documentary", "horror")
+
+clean_genres <- function(x) {
+  x |>
+    str_split(",") |>
+    unlist() |>
+    str_trim() |>
+    str_remove_all("(?i)movies|tv shows") |>
+    str_trim() |>
+    str_to_lower()
+}
+
+# Genre analysis
+genre_counts <- netflix |>
+  mutate(genres = map(listed_in, clean_genres)) |>
+  unnest(genres) |>
+  mutate(
+    genre_category = case_when(
+      str_detect(genres, "(?i)crime|thriller") ~ "Crime/Thriller",
+      str_detect(genres, "(?i)comedy") ~ "Comedy",
+      str_detect(genres, "(?i)drama") ~ "Drama",
+      str_detect(genres, "(?i)action|adventure") ~ "Action & Adventure",
+      str_detect(genres, "(?i)romantic|romance") ~ "Romantic Comedies",
+      str_detect(genres, "(?i)science fiction|sci-fi|fantasy") ~ "Science Fiction & Fantasy",
+      str_detect(genres, "(?i)documentary") ~ "Documentary",
+      str_detect(genres, "(?i)horror") ~ "Horror",
+      TRUE ~ "Other"
+    )
+  ) |>
+  filter(genre_category != "Other") |>
+  distinct(show_id, genre_category) |>
+  count(genre_category, sort = TRUE)
+
+total_titles <- n_distinct(netflix$show_id)
+genre_counts <- genre_counts |>
+  mutate(percentage = n / total_titles * 100)
+
+# Plot for genres
+genre_plot <- ggplot(genre_counts, aes(x = reorder(genre_category, -n), y = n)) +
+  geom_bar(stat = "identity", fill = "deeppink") +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")), vjust = -0.5) +
+  labs(title = "Comparison of Well-Known Genres on Netflix",
+       x = "Genre",
+       y = "Number of Titles") +
+  theme_minimal()
+
+# Top 10 actors
+actor_counts <- netflix %>%
+  mutate(actors = str_extract_all(cast, "\\b[A-Z][a-z]+ [A-Z][a-z]+\\b")) %>%
+  unnest(actors) %>%
+  count(actors, sort = TRUE) %>%
+  slice_max(n, n = 10)
+
+actor_plot <- ggplot(actor_counts, aes(x = reorder(actors, n), y = n)) +
+  geom_col(fill = "hotpink") +
+  coord_flip() +
+  labs(title = "Top 10 Most Frequently Cast Actors on Netflix",
+       x = "Actor", y = "Number of Appearances") +
+  theme_minimal() +
+  geom_text(aes(label = n), hjust = -0.2, size = 3)
+
+# Turkish content
+turkish_shows <- netflix %>%
+  filter(str_detect(country, "Turkey")) %>%
+  mutate(
+    year = as.integer(str_extract(date_added, "\\d{4}")),
+    type = type
+  )
+
+turkish_types <- turkish_shows %>%
+  count(type, sort = TRUE)
+
+turkish_type_plot <- ggplot(turkish_types, aes(x = "", y = n, fill = type)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  labs(title = "Distribution of Turkish Content on Netflix", fill = "Type") +
+  theme_void() +
+  geom_text(aes(label = paste0(type, "\n(", n, ")")), position = position_stack(vjust = 0.5), size = 4)
+
+turkish_trends <- turkish_shows %>%
+  count(year, type) %>%
+  complete(year, type, fill = list(n = 0))
+
+turkish_trend_plot <- ggplot(turkish_trends, aes(x = year, y = n, color = type)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Trends in Turkish Content on Netflix", x = "Year", y = "Number of Titles", color = "Type") +
+  theme_minimal() ``
+
+## Introduction
+
+-   **Project Goal:** Analyze Netflix's catalog to understand genre distributions, top actors, and content trends related to my home country, Turkey.
+
+-   **Data Source:** TidyTuesday (April 2021 Netflix dataset).
+
+## Genre Distribution
+
+```         
+{r,
+```
+
+Copy code
+
+`genre_plot`
+
+-   **Observation:** Drama dominates with over 36% of titles.
+
+-   Dramas often overlap with multiple themes, which could explain their prevalence.
+
+-   Crime/Thriller and Action & Adventure each hold around 12%, followed closely by Romantic Comedies at \~11%.
+
+## Other Genre Highlights
+
+-   Comedy and Horror each represent roughly 5%.
+
+-   Science Fiction & Fantasy titles are fewer (\~4%).
+
+-   This distribution suggests Netflix’s focus on emotionally engaging and narrative-rich content (e.g., Drama) and consistently popular genres like Crime/Thriller.
+
+## Top Actors
+
+```         
+{r,
+```
+
+Copy code
+
+`actor_plot`
+
+-   Data on cast was missing for many titles (over 700).
+
+-   **Top Actor:** Anupam Kher with 42 appearances.
+
+-   Frequent appearances by certain actors may reflect Netflix’s licensing deals or popularity of certain film industries (e.g., Bollywood).
+
+## Turkish Content Distribution
+
+```         
+{r,
+```
+
+Copy code
+
+`turkish_type_plot`
+
+-   Turkish content consists mainly of movies.
+
+-   TV shows are much rarer, likely due to higher production costs and complexities.
+
+## Turkish Content Over Time
+
+```         
+{r,
+```
+
+Copy code
+
+`turkish_trend_plot`
+
+-   A notable drop in Turkish titles around 2018.
+
+-   Possible factors:
+
+    -   Regulatory changes and censorship in Turkey.
+
+    -   Netflix content strategy shifts.
+
+    -   Political and economic challenges affecting production.
+
+## Conclusion
+
+-   **Key Insight:** Drama is the backbone of Netflix’s content library.
+
+-   **Actor Spotlight:** Certain actors appear prominently due to regional film industries and licensing deals.
+
+-   **Turkish Content:** Primarily movies, with a dip in production around 2018 due to regulatory and strategic reasons, but recent years have seen renewed interest.
+
+-   This analysis highlights how global streaming services balance multiple genres, star power, and regional content strategies to cater to diverse audiences.
+
+## References
+
+-   Data Source: [TidyTuesday (2021-04-20)](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-04-20)
+
+-   Additional context drawn from industry news and streaming service updates.
