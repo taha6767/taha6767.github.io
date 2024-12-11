@@ -11,17 +11,17 @@ website:
       - about.qmd
       - text: "Data Viz"
         menu:
-          - text: "TidyTuesday Analysis 1"
+          - text: "Analyzing Ceo Departures Using R"
             href: tidytuesday1.qmd
-          - text: "TidyTuesday Analysis 2"
+          - text: "Draugh Analysis of California Using R"
             href: tidytuesday2.qmd
-          - text: "Project 2"
+          - text: "Analyzing Netflix Data Using R"
             href: Project2Taha copy.qmd
-          - text: "Project 3"
+          - text: "Simulation of an Hypothetical Situation in R"
             href: TahaProject3Final.qmd
-          - text: "Project 4"
+          - text: "Replicating a Graph in R"
             href: Project4.qmd
-          - text: "Presentation"
+          - text: "Presentation on My Projects So Far"
             href: barebones.html
 
 format:
