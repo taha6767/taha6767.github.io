@@ -1,5 +1,5 @@
 ---
-title: "Project 4"
+title: "Recreating an academic graph"
 author: Taha Disbudak
 date: November 26, 2024
 format: html
@@ -8,7 +8,7 @@ execute:
   message: false
 ---
 
-```{r, warning = FALSE}
+```{r, warning = FALSE,echo = FALSE}
 library(mdsr)
 library(dbplyr)
 library(DBI)
@@ -18,16 +18,25 @@ library(tidyverse)
 
 Source of Data: Wideband Acoustic Immittance (WAI) Database hosted by Smith College (doi.org/10.35482/egr.001.2022)
 
-### Plan
+Plan
+In this project, I analyze and visualize data from the WAI Database to investigate how mean absorbance varies across frequencies for multiple studies and how absorbance differs by age groups within a single study.
 
-In this project, I analyze and visualize data from the WAI Database.
+Part 1:
+I replicate a version of Figure 1 from Voss (2019), which examines mean absorbance data across frequencies from 12 different studies.
 
-1.  For **Part 1**, I replicate **Figure 1 from Voss (2020)** by querying the database to compute mean absorbance values across frequencies for 12 studies. The data is grouped and processed in SQL, and only visualization is performed in R using `ggplot`.
+Using SQL, I query the WAI database to compute mean absorbance values by frequency for each study.
+In R, I visualize these data using ggplot2, with a logarithmic frequency axis and each study plotted as a separate line.
+Part 2:
+I focus on the Aithal_2019a study to compare mean absorbance values between children and adults.
 
-2.  For **Part 2**, I investigate the absorbance behavior across different **age groups** (Child, Adult) within the Aithal_2019a study. I compute mean absorbance values by frequency and age group using SQL and plot these trends in R.
+I query the database to compute mean absorbance values by frequency for each age category.
+I visualize the results to highlight differences in auditory responses between children and adults.
+References
+Voss (2019):
+Voss, S.E. (2019). Resource Review. Ear and Hearing, 40(6), 1481.
+DOI: 10.1097/AUD.0000000000000790
 
-Recreating figure 1:
-
+Part 1: Recreating a Figure Similar to Voss (2019) Figure 1
 ```{r}
 
 con_wai <- dbConnect(
@@ -39,11 +48,8 @@ Measurements <- tbl(con_wai, "Measurements")
 PI_Info <- tbl(con_wai, "PI_Info")
 Subjects <- tbl(con_wai, "Subjects")
 
-# collect(Measurements)
-
-
 ```
-
+Connecting to the online database
 ```{sql}
 #| connection: con_wai
 #| output.var: "graph"
@@ -69,20 +75,29 @@ GROUP BY m.Identifier, m.Frequency, m.Instrument, p.Year, p.AuthorsShortList
 
 
 ```
+This SQL query retrieves averaged absorbance measurements from specific scientific studies, joining measurement data with publication information and grouping the results by study identifier, frequency, and instrument type. The query creates a legend string combining author names, publication year, and sample size (N) for each study while filtering frequencies between 200 and 8000.
 
 ```{r}
 graph |>
-ggplot(aes (x = Frequency, y = mean_absorbance, 
-  color = Identifier,
-  group = Identifier)) +
-  geom_line()+
-  scale_x_log10()
-  labs(
+  ggplot(aes(x = Frequency, y = mean_absorbance,
+           color = legend, group = legend)) +
+geom_line() +
+scale_x_log10(breaks = c(250, 500, 1000, 2000, 4000, 8000),
+              labels = c("250","500","1000","2000","4000","8000")) +
+scale_y_continuous(limits = c(0, 1),
+                  breaks = seq(0, 1, by = 0.1)) +
+labs(
     title = "Mean Absorbance Across Frequencies for Various Studies",
-    x = "Frequency (Log Scale)",
-    y = "Mean Absorbance"
-  )
-
+    subtitle = "Recreating a Figure from Voss (2019)",
+    x = "Frequency (Hz)",
+    y = "Mean Absorbance",
+    color = "Study (Year; N; Instrument)"
+) +
+theme(
+    legend.position = "right",
+    legend.background = element_rect(fill = "white", color = "black"),
+    plot.margin = unit(c(1, 2, 1, 1), "cm")
+)
 ```
 
 This visualization shows data from 12 different studies examining mean absorbance patterns across sound frequencies. Each study is represented by a uniquely colored line, with frequencies shown on a logarithmic scale from about 300 to 8000 Hz. Most studies follow a similar pattern: starting with low absorbance values (around 0.1-0.2) at lower frequencies, gradually increasing to reach maximum absorbance (between 0.6-0.8) in the mid-frequency range of 1000-3000 Hz, and then declining at higher frequencies. Notable variations exist between studies, particularly in the Feeney_2017 data which shows a distinctly different pattern with lower absorbance values and a delayed peak compared to other studies. The Lewis_2015 study shows the earliest rise in absorbance at low frequencies, while Werner_2010 achieves the highest peak absorbance values around 0.8.
