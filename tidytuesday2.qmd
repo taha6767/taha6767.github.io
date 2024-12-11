@@ -4,9 +4,11 @@ execute:
   echo: false
 ---
 
-The data is from the [U.S. Drought Monitor](https://droughtmonitor.unl.edu/DmData/DataDownload/ComprehensiveStatistics.aspx). The tidytuesday github link is:
+The data is from the [U.S. Drought Monitor](https://droughtmonitor.unl.edu/DmData/DataDownload/ComprehensiveStatistics.aspx). The U.S. Drought Monitor collects data to help government agencies provide drought assistance and to track drought conditions across the country. The tidytuesday github link is:
 
 <https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-07-20/readme.md>
+
+Below is my analysis of the data:
 
 ```{r message=FALSE, warning=FALSE}
 library(tidytuesdayR) 

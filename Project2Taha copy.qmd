@@ -1,3 +1,14 @@
+---
+title: "Netflix Genre Analysis"
+author: "Mustafa Taha Disbudak"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  html: 
+    documentclass: article
+    toc: true
+    number-sections: true
+---
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 options(repos = c(CRAN = "https://cran.rstudio.com/"))
 
@@ -8,12 +19,16 @@ invisible(capture.output(install.packages("tidytuesdayR")))
 library(tidytuesdayR)
 library(tidyverse)
 
-# Load the dataset
+# Load the dataset (TidyTuesday dataset from 2021-04-20)
 tuesdata <- tt_load('2021-04-20')
 netflix <- tuesdata$netflix
 
 ```
-Mustafa Taha Disbudak Project 1
+
+## Introduction
+
+This report provides an analysis of the distribution of well-known genres within Netflix's catalog, the top cast appearances, and trends in Turkish content over time. The data source is the TidyTuesday project, which is a weekly data activity organized by the R for Data Science (R4DS) community. The dataset originally comes from the Flixable service and was made publicly available through the TidyTuesday Github repository.
+
 ```{r}
 # Define our genres of interest which are the most well know genres
 genres_of_interest <- c(
@@ -38,23 +53,34 @@ clean_genres <- function(x) {
     str_to_lower()
 }
 
-# Analyze genres
+# Replace case_when with if/else logic for assigning genre_category
+assign_genre_category <- function(g) {
+  if (str_detect(g, "(?i)crime|thriller")) {
+    "Crime/Thriller"
+  } else if (str_detect(g, "(?i)comedy")) {
+    "Comedy"
+  } else if (str_detect(g, "(?i)drama")) {
+    "Drama"
+  } else if (str_detect(g, "(?i)action|adventure")) {
+    "Action & Adventure"
+  } else if (str_detect(g, "(?i)romantic|romance")) {
+    "Romantic Comedies"
+  } else if (str_detect(g, "(?i)science fiction|sci-fi|fantasy")) {
+    "Science Fiction & Fantasy"
+  } else if (str_detect(g, "(?i)documentary")) {
+    "Documentary"
+  } else if (str_detect(g, "(?i)horror")) {
+    "Horror"
+  } else {
+    "Other"
+  }
+}
+
+# Analyze genres using the new function instead of case_when
 genre_counts <- netflix |>
   mutate(genres = map(listed_in, clean_genres)) |>
   unnest(genres) |>
-  mutate(
-    genre_category = case_when(
-      str_detect(genres, "(?i)crime|thriller") ~ "Crime/Thriller",
-      str_detect(genres, "(?i)comedy") ~ "Comedy",
-      str_detect(genres, "(?i)drama") ~ "Drama",
-      str_detect(genres, "(?i)action|adventure") ~ "Action & Adventure",
-      str_detect(genres, "(?i)romantic|romance") ~ "Romantic Comedies",
-      str_detect(genres, "(?i)science fiction|sci-fi|fantasy") ~ "Science Fiction & Fantasy",
-      str_detect(genres, "(?i)documentary") ~ "Documentary",
-      str_detect(genres, "(?i)horror") ~ "Horror",
-      TRUE ~ "Other"
-    )
-  ) |>
+  mutate(genre_category = map_chr(genres, assign_genre_category)) |>
   filter(genre_category != "Other") |>
   distinct(show_id, genre_category) |>  # Count each title only once per category
   count(genre_category, sort = TRUE)
@@ -73,19 +99,21 @@ genre_counts <- genre_counts |>
 # Print results with percentages
 print(genre_counts)
 
-# Create a bar plot for the genre distribution
+# Create a bar plot for the genre distribution with rotated x-axis labels
 ggplot(genre_counts, aes(x = reorder(genre_category, -n), y = n)) +
   geom_bar(stat = "identity", fill = "deeppink") +
   geom_text(aes(label = paste0(round(percentage, 1), "%")), vjust = -0.5) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +  # Add extra space above the bars
   labs(
     title = "Comparison of Well Known Genres on Netflix",
     x = "Genre",
     y = "Number of Titles"
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 
 ```
-
 
 The graph illustrates the distribution of genres within Netflix's library, highlighting a significant dominance of the drama genre, which accounts for over 36% of titles. This prevalence is understandable, as dramas often provide the foundation for captivating stories and frequently overlap with other genres, such as science fiction, romance, or thrillers. The substantial share of dramas suggests that Netflix prioritizes these versatile and emotionally engaging stories to attract a wide audience.
 
@@ -113,8 +141,8 @@ ggplot(actor_counts, aes(x = reorder(actors, n), y = n)) +
   geom_text(aes(label = n), hjust = -0.2, size = 3)
 
 ```
-According to the graph the cast information was missing for 718 titles on Netflix which indicated the data we have is not of the highest quality.
-Anupam Kher is the most frequently cast actor on Netflix with 42 apperances.
+
+According to the graph the cast information was missing for 718 titles on Netflix which indicated the data we have is not of the highest quality. Anupam Kher is the most frequently cast actor on Netflix with 42 apperances.
 
 ```{r}
 # Extract shows from Turkey
@@ -156,8 +184,8 @@ ggplot(turkish_trends, aes(x = year, y = n, color = type)) +
   theme_minimal()
 
 ```
-Most titles from my home country Turkey have been movies which makes sense as TV Shows are much harder to produce.
-There is a substantial decrease in the movies and TV Shows coming from Turkey in 2018 this might be caused by:
+
+Most titles from my home country Turkey have been movies which makes sense as TV Shows are much harder to produce. There is a substantial decrease in the movies and TV Shows coming from Turkey in 2018 this might be caused by:
 
 Regulatory and Political Issues: In 2018, Turkey introduced new regulations requiring streaming services to obtain licenses and comply with local broadcasting standards. This led to increased scrutiny and potential censorship, which might have affected the availability of Turkish content on platforms like Netflix1.
 
@@ -166,7 +194,5 @@ Content Strategy Shifts: Netflix often adjusts its content strategy based on vie
 Production Challenges: Political and economic instability in Turkey during that period could have impacted the production and export of TV shows and movies. This might have led to fewer Turkish productions being available for international distribution2.
 
 Despite these challenges, Turkish content has seen a resurgence in recent years, with Netflix investing in new Turkish originals and licensing popular Turkish dramas3.
-
-
 
 Reference: The data comes from the following TidyTuesday Github repository https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-04-20
