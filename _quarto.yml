@@ -9,7 +9,7 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - text: "Data Viz"
+      - text: "My Projects"
         menu:
           - text: "Analyzing Ceo Departures Using R"
             href: tidytuesday1.qmd
