@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>taha6767.github.io - Project3Taha</title>
+<title>taha6767.github.io - Mustafa Taha Disbudak November 8 2024 Experimenting with a simulation in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,25 +131,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-viz" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Data Viz</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">My Projects</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-viz">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-my-projects">    
         <li>
     <a class="dropdown-item" href="./tidytuesday1.html">
- <span class="dropdown-text">TidyTuesday Analysis 1</span></a>
+ <span class="dropdown-text">Analyzing Ceo Departures Using R</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./tidytuesday2.html">
- <span class="dropdown-text">TidyTuesday Analysis 2</span></a>
+ <span class="dropdown-text">Draugh Analysis of California Using R</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Project2Taha copy.html">
- <span class="dropdown-text">Project 2</span></a>
+ <span class="dropdown-text">Analyzing Netflix Data Using R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Project3Taha.html">
- <span class="dropdown-text">Project 3</span></a>
+    <a class="dropdown-item" href="./TahaProject3Final.html">
+ <span class="dropdown-text">Simulation of an Hypothetical Situation in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Project4.html">
+ <span class="dropdown-text">Replicating a Graph in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./barebones.html">
+ <span class="dropdown-text">Presentation on My Projects So Far</span></a>
   </li>  
     </ul>
   </li>
@@ -172,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project3Taha</h1>
+<h1 class="title">Mustafa Taha Disbudak November 8 2024 Experimenting with a simulation in R</h1>
 </div>
 
 
@@ -242,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the visualization</span></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>friend_distribution_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(results_df, </span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> classes_with_friends, <span class="at">y =</span> probability)) <span class="sc">+</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"hotpink"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(scales<span class="sc">::</span><span class="fu">percent</span>(probability, <span class="at">accuracy =</span> <span class="fl">0.1</span>),</span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"</span><span class="sc">\n</span><span class="st">(n="</span>, frequency, <span class="st">")"</span>)),</span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>

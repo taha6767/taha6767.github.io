@@ -1,5 +1,6 @@
 ---
-title: "Project3Taha"
+title: "Mustafa Taha Disbudak November 8 2024
+Experimenting with a simulation in R"
 ---
 
 Description of the Simulation Study
@@ -58,7 +59,7 @@ results_df <- tibble(
 # Create the visualization
 friend_distribution_plot <- ggplot(results_df, 
        aes(x = classes_with_friends, y = probability)) +
-  geom_bar(stat = "identity", fill = "steelblue", alpha = 0.8) +
+  geom_bar(stat = "identity", fill = "hotpink", alpha = 0.8) +
   geom_text(aes(label = paste0(scales::percent(probability, accuracy = 0.1),
                               "\n(n=", frequency, ")")),
             vjust = -0.5, size = 3.5) +
