@@ -149,9 +149,9 @@
   {
     "objectID": "Project5PresentationQMD.html#section",
     "href": "Project5PresentationQMD.html#section",
-    "title": "Quarto Presentations",
-    "section": "",
-    "text": "https://?meta:prerelease-subdomainquarto.org"
+    "title": "Netflix Data Analysis by Taha Disbudak",
+    "section": "2",
+    "text": "2\n\n* Turkish Content Type: Movies dominate over TV shows in Netflix’s Turkish content, probably because movies are easier to produce then whole shows.\n* 2018 Decline: A notable decrease in Turkish content occurred during this year\n* Regulation Impact: New streaming service laws in 2018 required licenses and local broadcasting compliance, potentially limiting content availability\n* Strategic Changes: Netflix may have shifted focus to other regions or content types based on global viewing trends"
   },
   {
     "objectID": "Project5PresentationQMD.html#what-does-the-data-set-include",
@@ -187,5 +187,19 @@
     "title": "Netflix Data Analysis by Taha Disbudak",
     "section": "Analyzing Turkish Content",
     "text": "Analyzing Turkish Content"
+  },
+  {
+    "objectID": "Project5PresentationQMD.html#graph",
+    "href": "Project5PresentationQMD.html#graph",
+    "title": "Netflix Data Analysis by Taha Disbudak",
+    "section": "Graph",
+    "text": "Graph"
+  },
+  {
+    "objectID": "Project5PresentationQMD.html#analysis-1",
+    "href": "Project5PresentationQMD.html#analysis-1",
+    "title": "Netflix Data Analysis by Taha Disbudak",
+    "section": "Analysis",
+    "text": "Analysis\n* Turkish Content Type: Movies dominate over TV shows in Netflix’s Turkish content, probably because movies are easier to produce then whole shows.\n* 2018 Decline: A notable decrease in Turkish content occurred during this year\n* Regulation Impact: New streaming service laws in 2018 required licenses and local broadcasting compliance, potentially limiting content availability\n* Strategic Changes: Netflix may have shifted focus to other regions or content types based on global viewing trends"
   }
 ]

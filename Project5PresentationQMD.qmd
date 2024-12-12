@@ -40,3 +40,17 @@ resources:
 ## Analyzing Turkish Content {auto-animate="true"}
 
 ![](TurkishContentCode.png)
+
+## Graph {auto-animate="true"}
+
+![](TurkishContentGraph.png){width="400px"}
+
+## Analysis {auto-animate="true"}
+
+\* Turkish Content Type: Movies dominate over TV shows in Netflix's Turkish content, probably because movies are easier to produce then whole shows.
+
+\* 2018 Decline: A notable decrease in Turkish content occurred during this year
+
+\* Regulation Impact: New streaming service laws in 2018 required licenses and local broadcasting compliance, potentially limiting content availability
+
+\* Strategic Changes: Netflix may have shifted focus to other regions or content types based on global viewing trends

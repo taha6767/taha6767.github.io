@@ -21,7 +21,7 @@ website:
             href: TahaProject3Final.qmd
           - text: "Replicating a Graph in R"
             href: Project4.qmd
-          - text: "Presentation on My Projects So Far"
+          - text: "Presentation on My Projects Thus Far"
             href: Project5PresentationQMD.qmd
 
 format:
