@@ -23,6 +23,8 @@ website:
             href: Project4.qmd
           - text: "Presentation on My Projects Thus Far"
             href: Project5PresentationQMD.qmd
+          - text: "RAG Project"
+            href: RAG.qmd
 
 format:
   html:

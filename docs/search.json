@@ -215,5 +215,96 @@
     "title": "Netflix Data Analysis by Taha Disbudak",
     "section": "The Graph",
     "text": "The Graph"
+  },
+  {
+    "objectID": "RAG.html",
+    "href": "RAG.html",
+    "title": "taha6767.github.io",
+    "section": "",
+    "text": "I am working with Proffessor Aashita Kesarwani to make a chatbot that is able to answer IT related questions for Harvey Mudd students using Retriaval Augmented Generation.\nHow it works: First I webscraped the IT Helpdesk website of Harvey Mudd and recorded all the related articles.\nWeb scraping was made possible thanks to the knowledge I gained in the Fundamentals of Data Science class. We used the scraped data as input for a large language model (LLM), which generated a high-dimensional vector representing its understanding of the data. When a user asked a question, we embedded their prompt using the same LLM and compared it to the vectors derived from our knowledgebase articles. By identifying the most similar knowledgebase article to the user’s input, we used it as a reference to provide precise and accurate answers.\nCurrently, we are experimenting with various LLMs, such as ChatGPT-4, Mistral, and Claude 3.5. I will continue to update this website as we make progress on the project.\nHere is the code I am using for webscraping:"
+  },
+  {
+    "objectID": "reveal.js-master 2/examples/markdown.html",
+    "href": "reveal.js-master 2/examples/markdown.html",
+    "title": "Markdown Demo",
+    "section": "",
+    "text": "Content 1.1\nNote: This will only appear in the speaker notes window.\n\n\n\nContent 1.2\n\n\n\nContent 2.1\n\n\n\nContent 3.1\n\n\n\nContent 3.2\n\n\n\n\n\n\nExternal Image\n\n\n\n\n\n\\[ J(\\theta_0,\\theta_1) = \\sum_{i=0} \\]"
+  },
+  {
+    "objectID": "reveal.js-master 2/examples/markdown.html#external-1.1",
+    "href": "reveal.js-master 2/examples/markdown.html#external-1.1",
+    "title": "Markdown Demo",
+    "section": "",
+    "text": "Content 1.1\nNote: This will only appear in the speaker notes window."
+  },
+  {
+    "objectID": "reveal.js-master 2/examples/markdown.html#external-1.2",
+    "href": "reveal.js-master 2/examples/markdown.html#external-1.2",
+    "title": "Markdown Demo",
+    "section": "",
+    "text": "Content 1.2"
+  },
+  {
+    "objectID": "reveal.js-master 2/examples/markdown.html#external-2",
+    "href": "reveal.js-master 2/examples/markdown.html#external-2",
+    "title": "Markdown Demo",
+    "section": "",
+    "text": "Content 2.1"
+  },
+  {
+    "objectID": "reveal.js-master 2/examples/markdown.html#external-3.1",
+    "href": "reveal.js-master 2/examples/markdown.html#external-3.1",
+    "title": "Markdown Demo",
+    "section": "",
+    "text": "Content 3.1"
+  },
+  {
+    "objectID": "reveal.js-master 2/examples/markdown.html#external-3.2",
+    "href": "reveal.js-master 2/examples/markdown.html#external-3.2",
+    "title": "Markdown Demo",
+    "section": "",
+    "text": "Content 3.2"
+  },
+  {
+    "objectID": "reveal.js-master 2/examples/markdown.html#external-3.3-image",
+    "href": "reveal.js-master 2/examples/markdown.html#external-3.3-image",
+    "title": "Markdown Demo",
+    "section": "",
+    "text": "External Image"
+  },
+  {
+    "objectID": "reveal.js-master 2/examples/markdown.html#external-3.4-math",
+    "href": "reveal.js-master 2/examples/markdown.html#external-3.4-math",
+    "title": "Markdown Demo",
+    "section": "",
+    "text": "\\[ J(\\theta_0,\\theta_1) = \\sum_{i=0} \\]"
+  },
+  {
+    "objectID": "reveal.js-master 2/test/simple.html",
+    "href": "reveal.js-master 2/test/simple.html",
+    "title": "taha6767.github.io",
+    "section": "",
+    "text": "var a = 1;"
+  },
+  {
+    "objectID": "reveal.js-master 2/test/simple.html#slide-1.1",
+    "href": "reveal.js-master 2/test/simple.html#slide-1.1",
+    "title": "taha6767.github.io",
+    "section": "",
+    "text": "var a = 1;"
+  },
+  {
+    "objectID": "reveal.js-master 2/test/simple.html#slide-1.2",
+    "href": "reveal.js-master 2/test/simple.html#slide-1.2",
+    "title": "taha6767.github.io",
+    "section": "Slide 1.2",
+    "text": "Slide 1.2"
+  },
+  {
+    "objectID": "reveal.js-master 2/test/simple.html#slide-2",
+    "href": "reveal.js-master 2/test/simple.html#slide-2",
+    "title": "taha6767.github.io",
+    "section": "Slide 2",
+    "text": "Slide 2"
   }
 ]
