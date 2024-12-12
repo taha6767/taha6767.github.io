@@ -18,7 +18,7 @@ website:
           - text: "Analyzing Netflix Data Using R"
             href: Project2Taha copy.qmd
           - text: "Simulation of an Hypothetical Situation in R"
-            href: TahaProject3Final.qmd
+            href: Project3Taha.qmd
           - text: "Replicating a Graph in R"
             href: Project4.qmd
           - text: "Presentation on My Projects so Far"
