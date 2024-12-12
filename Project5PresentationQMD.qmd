@@ -54,3 +54,11 @@ resources:
 \* Regulation Impact: New streaming service laws in 2018 required licenses and local broadcasting compliance, potentially limiting content availability
 
 \* Strategic Changes: Netflix may have shifted focus to other regions or content types based on global viewing trends
+
+## Finding the actor who had a role in the most amount of productions {auto-animate="true"}
+
+![](PActor.png)
+
+## The Graph {auto-animate="true"}
+
+![](PActorG.png)
