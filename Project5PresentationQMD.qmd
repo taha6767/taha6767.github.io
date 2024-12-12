@@ -1,0 +1,42 @@
+---
+title: "Netflix Data Analysis by Taha Disbudak"
+subtitle: "This dataset consists of tv shows and movies available on Netflix as of 2019. The dataset is collected from Flixable which is a third-party Netflix search engine"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: images/quarto.png
+    css: styles.css
+resources:
+  - demo.pdf
+---
+
+## What does the data set include?
+
+![](NetflixDataSetExample.png){width="500px"}
+
+## Comparing Genre Popularity {auto-animate="true"}
+
+![](NetflixGenreCode.png)
+
+-   Since there were a lot of different genres I had to limit the genres down to the most popular ones and I used the following code to count the number of them
+
+## Bar Chart {auto-animate="true"}
+
+![](GenreGraph.png)
+
+## Analysis {auto-animate="true"}
+
+\* Drama: 36% of titles, dominating Netflix's library and offering versatile storytelling options
+
+\* Crime/Thriller and Action & Adventure: Each at 12%, appealing to fans of suspense and excitement
+
+\* Romantic Comedies: 11.1% of content, catering to viewers seeking feel-good entertainment
+
+\* Horror: Only 5% of the library, presenting limited options for genre enthusiasts
+
+## Analyzing Turkish Content {auto-animate="true"}
+
+![](TurkishContentCode.png)
