@@ -680,6 +680,9 @@ textarea {
 .project-card__tags {
   margin-bottom: 2.6rem;
 }
+.project-card__tags:last-child {
+  margin-bottom: 0;
+}
 .project-card__links {
   margin-top: auto;
   display: flex;

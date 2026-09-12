@@ -52,26 +52,17 @@ $themeClrTint:    #eef4fb;
 
 Change and recompile.
 
-## Remaining placeholders
+## Placeholders
 
-Only two, both project links:
+None. Every link on the page resolves.
 
-| Where | What's needed |
-|---|---|
-| DataFest project | Repo / writeup link — button currently reads "Coming Soon" |
-| RAG Chatbot project | Repo / demo link — button currently reads "Coming Soon" |
+The DataFest and RAG Chatbot cards intentionally have no button: neither has a
+public repo or demo. If one ever does, add a `project-card__links` block to that
+card, matching the Netflix card.
 
 The Netflix Content Analysis card links to the archived Quarto presentation at
 `taha6767.github.io/taha6767-portfolio-old/Presentation.html`. If that repo is
 ever renamed or unpublished, this link breaks — update it here.
-
-```bash
-grep -n "LINK PLACEHOLDER" index.html
-```
-
-Everything else is real: photo, logos, resume PDF, and LinkedIn
-(`https://www.linkedin.com/in/taha-disbudak`, wired into the hero, the contact
-card, and the footer).
 
 ### Note on the resume PDF
 `assets/resume/Taha-Disbudak-Resume.pdf` is publicly downloadable once deployed.

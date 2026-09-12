@@ -57,6 +57,11 @@
 
   &__tags {
     margin-bottom: 2.6rem;
+
+    // Cards with no link end on the tags; drop the trailing gap
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__links {
