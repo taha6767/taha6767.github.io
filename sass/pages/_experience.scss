@@ -1,0 +1,133 @@
+.experience {
+  background: #fff;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    grid-gap: 4rem;
+    padding-bottom: 6rem;
+    margin-bottom: 6rem;
+    border-bottom: 1px solid rgb(235, 235, 235);
+
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+      grid-gap: 2rem;
+      padding-bottom: 5rem;
+      margin-bottom: 5rem;
+    }
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__logo-cont {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    @include respond(tab-port) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    max-width: 11rem;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: $commonBorderRadius;
+    background: #fff;
+    border: 1px solid rgb(240, 240, 240);
+    padding: 1rem;
+  }
+
+  &__role {
+    font-weight: 700;
+    font-size: 2.6rem;
+    color: $textClrHeading;
+    margin-bottom: 0.6rem;
+
+    @include respond(phone) {
+      font-size: 2.2rem;
+    }
+  }
+
+  &__org {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: $themeClrPrimary;
+    margin-bottom: 0.8rem;
+  }
+
+  &__meta {
+    font-size: 1.5rem;
+    color: #8b95a5;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.6rem;
+
+    &-sep {
+      margin: 0 0.8rem;
+    }
+  }
+
+  &__advisors {
+    font-size: 1.6rem;
+    font-style: italic;
+    color: $textClrBody;
+    margin-bottom: 1.6rem;
+  }
+
+  &__bullets {
+    list-style: none;
+    margin-bottom: 2.4rem;
+
+    li {
+      position: relative;
+      padding-left: 2.4rem;
+      font-size: 1.7rem;
+      line-height: 1.7;
+      color: $textClrBody;
+      margin-bottom: 1.2rem;
+      max-width: 75rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 1rem;
+        width: 0.9rem;
+        height: 0.9rem;
+        border-radius: 50%;
+        background: $themeClrPrimary;
+      }
+
+      strong {
+        color: $textClrHeading;
+      }
+
+      code {
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 0.9em;
+        background: $themeClrTint;
+        color: $themeClrDark;
+        padding: 0.1rem 0.5rem;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  &__tags {
+    margin-bottom: 2rem;
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+}

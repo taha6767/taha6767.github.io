@@ -1,0 +1,76 @@
+.education {
+  background: #fff;
+
+  &__card {
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    grid-gap: 4rem;
+    align-items: start;
+    max-width: 95rem;
+    margin: 0 auto;
+    padding: 4.5rem;
+    background: #fff;
+    border: 1px solid rgb(235, 235, 235);
+    border-left: 5px solid $themeClrPrimary;
+    border-radius: $commonBorderRadius;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.04);
+
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+      grid-gap: 2.5rem;
+      padding: 3rem;
+    }
+  }
+
+  &__logo-cont {
+    display: flex;
+    justify-content: center;
+
+    @include respond(tab-port) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    max-width: 11rem;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: $commonBorderRadius;
+  }
+
+  &__school {
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: $textClrHeading;
+    margin-bottom: 0.6rem;
+
+    @include respond(phone) {
+      font-size: 2.4rem;
+    }
+  }
+
+  &__degree {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: $themeClrPrimary;
+    margin-bottom: 0.8rem;
+  }
+
+  &__meta {
+    font-size: 1.5rem;
+    color: #8b95a5;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 3rem;
+
+    &-item--hl {
+      color: $themeClrDark;
+    }
+  }
+
+  &__cw-label {
+    margin-bottom: 1.5rem;
+  }
+}

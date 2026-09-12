@@ -1,0 +1,18 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+@import 'base/base';
+
+@import 'abstracts/utilities';
+
+@import 'pages/home';
+@import 'pages/experience';
+@import 'pages/projects';
+@import 'pages/education';
+
+@import 'components/header';
+@import 'components/footer';
+@import 'components/skills';
+@import 'components/tags';
+@import 'components/contact-cards';
+@import 'components/mouse-scroll';
