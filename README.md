@@ -54,31 +54,29 @@ Change and recompile.
 
 ## ⚠️ Placeholders that still need replacing
 
+All image and PDF assets are real. What's left is links.
+
 ### Missing links (currently `href="#"`)
-| Where | index.html | What's needed |
-|---|---|---|
-| Hero social icon | ~line 137 | LinkedIn URL |
-| Contact card | ~line 573 | LinkedIn URL |
-| Footer social icon | ~line 599 | LinkedIn URL |
-| DataFest project | ~line 492 | Repo / writeup link (button says "Coming Soon") |
-| RAG Chatbot project | ~line 514 | Repo / demo link (button says "Coming Soon") |
-
-### Missing assets (monogram placeholders in use)
-| File | Replace with |
+| Where | What's needed |
 |---|---|
-| `assets/img/taha-profile.svg` | Real headshot (square, 800px+) |
-| `assets/img/logos/td-bank.svg` | TD Bank logo |
-| `assets/img/logos/pomona.svg`  | Pomona College logo (used twice) |
-| `assets/img/logos/p-ai.svg`    | P-AI Club / TagSafe logo |
-| `assets/img/logos/mega.svg`    | MEGA Insulation Solutions logo |
-| `assets/resume/Taha-Disbudak-Resume.pdf` | Real resume PDF |
-
-If a replacement has a different extension (`.png`/`.jpg`), update the `src`
-in `index.html` to match — grep for `ASSET PLACEHOLDER`.
+| Hero social icon | LinkedIn URL |
+| Contact card | LinkedIn URL |
+| Footer social icon | LinkedIn URL |
+| DataFest project | Repo / writeup link (button says "Coming Soon") |
+| RAG Chatbot project | Repo / demo link (button says "Coming Soon") |
 
 ```bash
-grep -n "PLACEHOLDER" index.html
+grep -n "LINK PLACEHOLDER" index.html
 ```
+
+### Notes on the resume PDF
+`assets/resume/Taha-Disbudak-Resume.pdf` is publicly downloadable once deployed.
+It still lists MEGA Insulation Solutions, which was removed from the site, and it
+contains a phone number. Replace the file to change either.
+
+### Source images
+Originals live in `PicturesForTheWebsite/` and are gitignored. Processed versions
+in `assets/` were cropped and downscaled from them.
 
 ## Deploy
 
