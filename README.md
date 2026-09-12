@@ -52,31 +52,31 @@ $themeClrTint:    #eef4fb;
 
 Change and recompile.
 
-## ⚠️ Placeholders that still need replacing
+## Remaining placeholders
 
-All image and PDF assets are real. What's left is links.
+Only two, both project links:
 
-### Missing links (currently `href="#"`)
 | Where | What's needed |
 |---|---|
-| Hero social icon | LinkedIn URL |
-| Contact card | LinkedIn URL |
-| Footer social icon | LinkedIn URL |
-| DataFest project | Repo / writeup link (button says "Coming Soon") |
-| RAG Chatbot project | Repo / demo link (button says "Coming Soon") |
+| DataFest project | Repo / writeup link — button currently reads "Coming Soon" |
+| RAG Chatbot project | Repo / demo link — button currently reads "Coming Soon" |
 
 ```bash
 grep -n "LINK PLACEHOLDER" index.html
 ```
 
-### Notes on the resume PDF
+Everything else is real: photo, logos, resume PDF, and LinkedIn
+(`https://www.linkedin.com/in/taha-disbudak`, wired into the hero, the contact
+card, and the footer).
+
+### Note on the resume PDF
 `assets/resume/Taha-Disbudak-Resume.pdf` is publicly downloadable once deployed.
-It still lists MEGA Insulation Solutions, which was removed from the site, and it
-contains a phone number. Replace the file to change either.
+It intentionally still lists MEGA Insulation Solutions, which was dropped from
+the site's Experience section as a presentation choice.
 
 ### Source images
-Originals live in `PicturesForTheWebsite/` and are gitignored. Processed versions
-in `assets/` were cropped and downscaled from them.
+Originals live in `PicturesForTheWebsite/` and are gitignored. The versions in
+`assets/` were cropped and downscaled from them.
 
 ## Deploy
 
