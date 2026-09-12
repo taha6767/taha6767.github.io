@@ -371,6 +371,11 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.home-hero__org:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
 }
 @media only screen and (max-width: 37.5em) {
   .home-hero__org {
@@ -505,6 +510,7 @@ textarea {
   background: #fff;
 }
 .experience__row {
+  scroll-margin-top: 11rem;
   display: grid;
   grid-template-columns: 14rem 1fr;
   grid-gap: 4rem;

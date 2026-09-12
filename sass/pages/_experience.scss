@@ -2,6 +2,8 @@
   background: #fff;
 
   &__row {
+    // Cleared for the fixed header when linked to from the hero logo strip
+    scroll-margin-top: 11rem;
     display: grid;
     grid-template-columns: 14rem 1fr;
     grid-gap: 4rem;
