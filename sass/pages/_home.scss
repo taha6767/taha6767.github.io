@@ -88,6 +88,79 @@
     margin-top: 5rem;
     text-align: center;
   }
+
+  &__avatar-cont {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+
+    @include respond(phone) {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  &__avatar {
+    width: 17rem;
+    height: 17rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(#fff, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+    @include respond(phone) {
+      width: 13rem;
+      height: 13rem;
+    }
+  }
+
+  &__orgs {
+    margin-top: 5rem;
+    text-align: center;
+  }
+
+  &__orgs-label {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(#fff, 0.75);
+    margin-bottom: 2rem;
+  }
+
+  &__orgs-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  &__org {
+    background: #fff;
+    border-radius: $commonBorderRadius;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    height: 6.4rem;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include respond(phone) {
+      height: 5.4rem;
+      padding: 0.8rem 1.4rem;
+    }
+
+    img {
+      max-height: 4.2rem;
+      width: auto;
+      display: block;
+
+      @include respond(phone) {
+        max-height: 3.4rem;
+      }
+    }
+  }
 }
 
 .about {
@@ -174,4 +247,36 @@
     url(../../assets/svg/common-bg.svg);
   background-size: cover;
   background-position: center;
+}
+
+// Short viewports (most laptops): the hero now carries an avatar and a logo
+// strip, so tighten the vertical rhythm to keep it clear of the fixed header.
+@media only screen and (max-height: 50em) and (min-width: 37.5em) {
+  .home-hero__avatar {
+    width: 12.5rem;
+    height: 12.5rem;
+  }
+  .home-hero__avatar-cont {
+    margin-bottom: 2.2rem;
+  }
+  .home-hero__info {
+    margin-top: 2rem;
+  }
+  .home-hero__cta {
+    margin-top: 3rem;
+  }
+  .home-hero__orgs {
+    margin-top: 3.2rem;
+  }
+  .home-hero__orgs-label {
+    margin-bottom: 1.4rem;
+  }
+  .home-hero__org {
+    height: 5.6rem;
+    padding: 0.8rem 1.6rem;
+
+    img {
+      max-height: 3.6rem;
+    }
+  }
 }

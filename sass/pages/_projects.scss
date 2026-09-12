@@ -66,3 +66,42 @@
     gap: 1.5rem;
   }
 }
+
+// Wide card spanning the grid: chart on the left, write-up on the right
+.project-card--featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-gap: 4rem;
+  align-items: center;
+
+  @include respond(tab-port) {
+    grid-template-columns: 1fr;
+    grid-gap: 2.5rem;
+  }
+}
+
+.project-card {
+  &__media {
+    background: #fff;
+    border: 1px solid rgb(238, 238, 238);
+    border-radius: $commonBorderRadius;
+    overflow: hidden;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include respond(tab-port) {
+      align-items: flex-start;
+    }
+  }
+}
