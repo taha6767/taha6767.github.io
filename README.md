@@ -66,8 +66,12 @@ The 5C Halal Menu card links to the live app and its public repo under the
 - `5c-halal-menu-app.jpg` — a screenshot of the live app (dinner view, so real
   halal dishes and their provenance tags are visible). Re-capture from
   `5cmsa.github.io/5c-halal-menu/?meal=dinner` if the UI changes.
-- `5c-halal-menu.png` — the app's own PWA icon (`icons/icon-512.png`), shown
-  small beside the card title.
+- `5c-halal-menu.png` — the app's own PWA icon (`icons/icon-512.png`), used
+  both as a small mark beside the card title and as the hero shortcut chip.
+
+The hero logo strip links to four anchors: `#td-bank`, `#halal-menu`,
+`#hci-research` and `#tagsafe`. Experience rows and project cards both carry
+`scroll-margin-top: 11rem` so a jump clears the fixed header.
 
 The Netflix Content Analysis card links to the archived Quarto presentation at
 `taha6767.github.io/taha6767-portfolio-old/Presentation.html`. If that repo is

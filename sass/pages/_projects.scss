@@ -14,6 +14,8 @@
 }
 
 .project-card {
+  // Cleared for the fixed header when linked to from the hero logo strip
+  scroll-margin-top: 11rem;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -118,7 +120,7 @@
   &__titlerow {
     display: flex;
     align-items: center;
-    gap: 1.6rem;
+    gap: 1.3rem;
     margin-bottom: 1.8rem;
 
     .project-card__title {
@@ -127,15 +129,16 @@
   }
 
   &__mark {
-    width: 4.8rem;
-    height: 4.8rem;
+    width: 3.2rem;
+    height: 3.2rem;
     flex-shrink: 0;
-    border-radius: 1rem;
+    border-radius: 0.7rem;
     display: block;
 
     @include respond(phone) {
-      width: 4.2rem;
-      height: 4.2rem;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 0.6rem;
     }
   }
 
