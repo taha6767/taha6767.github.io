@@ -64,8 +64,20 @@ The 5C Halal Menu card links to the live app and its public repo under the
 `5cmsa` org. It uses two images, both in `assets/img/projects/`:
 
 - `5c-halal-menu-app.jpg` — a screenshot of the live app (dinner view, so real
-  halal dishes and their provenance tags are visible). Re-capture from
-  `5cmsa.github.io/5c-halal-menu/?meal=dinner` if the UI changes.
+  halal dishes and their provenance tags are visible), 1200px wide for ~2x on
+  retina. To re-capture:
+
+  ```bash
+  CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  "$CHROME" --headless=new --hide-scrollbars --force-device-scale-factor=2 \
+    --window-size=1400,1660 --virtual-time-budget=16000 \
+    --screenshot=full.png "https://5cmsa.github.io/5c-halal-menu/?meal=dinner"
+  ```
+
+  The app pins a PWA install banner to the bottom of the viewport, so capture
+  tall and crop above the "Halal track record" section (~3100px at 2x). `sips`
+  on macOS ignores `--cropOffset` and only crops from the centre, so crop by
+  rendering the PNG in a correctly sized headless Chrome viewport instead.
 - `5c-halal-menu.png` — the app's own PWA icon (`icons/icon-512.png`), used
   both as a small mark beside the card title and as the hero shortcut chip.
 
