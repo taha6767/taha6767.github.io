@@ -474,6 +474,67 @@
         </h2>
 
         <div class="projects__grid">
+          <article class="project-card project-card--featured project-card--brand">
+            <div class="project-card__media project-card__media--brand">
+              <img
+                src="./assets/img/projects/5c-halal-menu.png"
+                alt="5C Halal Menu logo"
+                class="project-card__logo"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">5C Halal Menu</h3>
+              <p class="project-card__desc">
+                A web app for the Claremont Colleges Muslim Students Association
+                that shows which dishes are halal across all six 5C dining halls
+                &mdash; Frary, Frank, Collins, Malott, McConnell and
+                Hoch-Shanahan &mdash; for any day and meal.
+                <strong>Used by 100+ students daily.</strong>
+              </p>
+              <p class="project-card__desc">
+                The halls run under three different food-service providers, each
+                publishing menus in its own format and marking halal items
+                differently. I wrote dependency-free Node.js scrapers and a
+                normalization layer that reduce all three to one data model, plus
+                classification logic that identifies halal and seafood dishes and
+                flags anything mixing in pork, alcohol, or non-halal meat. A
+                GitHub Actions workflow re-scrapes seven days ahead four times a
+                day and redeploys automatically, falling back to a community menu
+                API when a hall's own feed goes missing. It ships as an
+                installable PWA with offline support via a service worker, links
+                every dish back to the hall's original listing, charts a
+                six-month halal track record per hall, and features a daily
+                hadith.
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Web Scraping</span>
+                <span class="tag">GitHub Actions</span>
+                <span class="tag">CI/CD</span>
+                <span class="tag">PWA</span>
+                <span class="tag">Service Workers</span>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://5cmsa.github.io/5c-halal-menu/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="btn btn--sm btn--theme dynamicBgClr"
+                  >Open the App</a
+                >
+                <a
+                  href="https://github.com/5cmsa/5c-halal-menu"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="btn btn--sm btn--theme-inv"
+                  >View on GitHub</a
+                >
+              </div>
+            </div>
+          </article>
+
           <article class="project-card project-card--featured">
             <div class="project-card__media">
               <img
