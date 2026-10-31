@@ -61,9 +61,13 @@ public repo or demo. If one ever does, add a `project-card__links` block to that
 card, matching the Netflix card.
 
 The 5C Halal Menu card links to the live app and its public repo under the
-`5cmsa` org. Its logo in `assets/img/projects/5c-halal-menu.png` is that
-project's own PWA icon (`icons/icon-512.png`), and the card's brand panel uses
-the app's theme colour `#1f4e96`.
+`5cmsa` org. It uses two images, both in `assets/img/projects/`:
+
+- `5c-halal-menu-app.jpg` — a screenshot of the live app (dinner view, so real
+  halal dishes and their provenance tags are visible). Re-capture from
+  `5cmsa.github.io/5c-halal-menu/?meal=dinner` if the UI changes.
+- `5c-halal-menu.png` — the app's own PWA icon (`icons/icon-512.png`), shown
+  small beside the card title.
 
 The Netflix Content Analysis card links to the archived Quarto presentation at
 `taha6767.github.io/taha6767-portfolio-old/Presentation.html`. If that repo is

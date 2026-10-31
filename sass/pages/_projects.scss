@@ -78,7 +78,9 @@
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   grid-gap: 4rem;
-  align-items: center;
+  // Top-align: the media is usually shorter than the copy, and centring it
+  // leaves a gap above and below rather than lining up with the title
+  align-items: start;
 
   @include respond(tab-port) {
     grid-template-columns: 1fr;
@@ -111,36 +113,29 @@
   }
 }
 
-// Logo-led featured card: a narrow brand panel instead of a wide screenshot,
-// so a square app icon is not stretched across half the row.
-.project-card--brand {
-  grid-template-columns: 26rem 1fr;
-  // Let the brand panel run the full height rather than float mid-card
-  align-items: stretch;
-
-  @include respond(tab-port) {
-    grid-template-columns: 1fr;
-  }
-}
-
+// The 5C card pairs its app icon with the title, screenshot in the media slot
 .project-card {
-  &__media--brand {
-    background: #1f4e96;
-    border-color: #1f4e96;
+  &__titlerow {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 3rem;
+    gap: 1.6rem;
+    margin-bottom: 1.8rem;
+
+    .project-card__title {
+      margin-bottom: 0;
+    }
   }
 
-  &__logo {
-    width: 100%;
-    max-width: 17rem;
-    height: auto;
+  &__mark {
+    width: 4.8rem;
+    height: 4.8rem;
+    flex-shrink: 0;
+    border-radius: 1rem;
     display: block;
 
-    @include respond(tab-port) {
-      max-width: 15rem;
+    @include respond(phone) {
+      width: 4.2rem;
+      height: 4.2rem;
     }
   }
 
